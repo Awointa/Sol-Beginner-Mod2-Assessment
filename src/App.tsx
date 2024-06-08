@@ -175,6 +175,13 @@ export default function App() {
 	 */
 	const transferSol = async () => {
 		// create a new transaction for the transfer
+		const transaction = new Transaction().add(
+			SystemProgram.transfer({
+				fromPubkey: senderKeypair.publicKey,
+				toPubkey: receiverPublicKey,
+				lamports: 1 * LAMPORTS_PER_SOL,
+			}),
+		);
 
 		// send and confirm the transaction
 
