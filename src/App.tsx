@@ -96,20 +96,25 @@ export default function App() {
 	 */
 	const createSender = async () => {
 		// create a new Keypair
-		const newKeyPair = Keypair.generate();
+		const newKeyPair = Keypair.generate(); //#######
 		setSenderKeypair(newKeyPair);
 
 		console.log("Sender account: ", senderKeypair!.publicKey.toString());
 		console.log("Airdropping 2 SOL to Sender Wallet");
 
 		// save this new KeyPair into this state variable
-		setSenderKeypair(/*KeyPair here*/);
+		// setSenderKeypair(/*KeyPair here*/);
 
 		// request airdrop into this new account
+		const airdropSignature = await connection.requestAirdrop( //#######
+			newKeyPair.publicKey,
+			2 * LAMPORTS_PER_SOL,
+		);
 
 		const latestBlockHash = await connection.getLatestBlockhash();
 
 		// now confirm the transaction
+    
 
 		console.log(
 			"Wallet Balance: " +
