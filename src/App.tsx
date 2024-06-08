@@ -99,11 +99,14 @@ export default function App() {
 		const newKeyPair = Keypair.generate(); //#######
 		setSenderKeypair(newKeyPair);
 
-		console.log("Sender account: ", senderKeypair!.publicKey.toString());
+		console.log(
+			"Sender account: ",
+      newKeyPair.publicKey.toString()
+		); // Access publicKey within then block;
 		console.log("Airdropping 2 SOL to Sender Wallet");
 
 		// save this new KeyPair into this state variable
-		// setSenderKeypair(/*KeyPair here*/);
+		setSenderKeypair(newKeyPair);
 
 		// request airdrop into this new account
 		const airdropSignature = await connection.requestAirdrop(
