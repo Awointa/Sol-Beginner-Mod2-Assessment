@@ -106,15 +106,20 @@ export default function App() {
 		// setSenderKeypair(/*KeyPair here*/);
 
 		// request airdrop into this new account
-		const airdropSignature = await connection.requestAirdrop( //#######
+		const airdropSignature = await connection.requestAirdrop(
+			//#######
 			newKeyPair.publicKey,
 			2 * LAMPORTS_PER_SOL,
 		);
 
 		const latestBlockHash = await connection.getLatestBlockhash();
 
-		// now confirm the transaction
-    
+		// now confirm the transaction ############
+		await connection.confirmTransaction({
+			signature: airdropSignature,
+			blockhash: latestBlockHash.blockhash,
+			lastValidBlockHeight: latestBlockHash.lastValidBlockHeight,
+		});
 
 		console.log(
 			"Wallet Balance: " +
@@ -135,7 +140,7 @@ export default function App() {
 		if (solana) {
 			try {
 				// connect to phantom wallet and return response which includes the wallet public key
-
+				const response = await solana.connect();
 				// save the public key of the phantom wallet to the state variable
 				setReceiverPublicKey(/*PUBLIC KEY*/);
 			} catch (err) {
