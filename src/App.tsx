@@ -184,6 +184,9 @@ export default function App() {
 		);
 
 		// send and confirm the transaction
+		const signature = await sendAndConfirmTransaction(connection, transaction, [
+			senderKeypair,
+		]);
 
 		console.log("transaction sent and confirmed");
 		console.log(
