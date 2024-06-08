@@ -188,6 +188,7 @@ export default function App() {
 			senderKeypair,
 		]);
 
+		console.log("Transaction signature", signature);
 		console.log("transaction sent and confirmed");
 		console.log(
 			"Sender Balance: " +
