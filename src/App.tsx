@@ -142,7 +142,7 @@ export default function App() {
 				// connect to phantom wallet and return response which includes the wallet public key
 				const response = await solana.connect();
 				// save the public key of the phantom wallet to the state variable
-				setReceiverPublicKey(/*PUBLIC KEY*/);
+				setReceiverPublicKey(new PublicKey(response.publicKey.toString()));
 			} catch (err) {
 				console.log(err);
 			}
