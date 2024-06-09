@@ -99,10 +99,7 @@ export default function App() {
 		const newKeyPair = Keypair.generate(); //#######
 		setSenderKeypair(newKeyPair);
 
-		console.log(
-			"Sender account: ",
-      newKeyPair.publicKey.toString()
-		); // Access publicKey within then block;
+		console.log("Sender account: ", newKeyPair.publicKey.toString()); // Access publicKey within then block;
 		console.log("Airdropping 2 SOL to Sender Wallet");
 
 		// save this new KeyPair into this state variable
@@ -177,6 +174,12 @@ export default function App() {
 	 * This function is called when the Transfer SOL to Phantom Wallet button is clicked
 	 */
 	const transferSol = async () => {
+		// create a new transaction for the transfer
+		if (!senderKeypair || !receiverPublicKey) {
+			console.log("Sender or receiver keypair missing");
+			return;
+		}
+
 		// create a new transaction for the transfer
 		const transaction = new Transaction().add(
 			SystemProgram.transfer({
